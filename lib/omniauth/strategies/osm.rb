@@ -7,9 +7,9 @@ module OmniAuth
 
       option :client_options, {
         :site               => 'http://www.openstreetmap.org',
-        :request_token_path => '/oauth/request_token',
-        :access_token_path  => '/oauth/access_token',
-        :authorize_path     => '/oauth/authorize'
+        :request_token_url => 'http://www.openstreetmap.org/oauth/request_token',
+        :access_token_url  => 'http://www.openstreetmap.org/oauth/access_token',
+        :authorize_url     => 'http://www.openstreetmap.org/oauth/authorize'
       }
 
       uid{ raw_info['user']['id'] }
@@ -17,10 +17,27 @@ module OmniAuth
       info do
       {
         'name'       => raw_info['user']['display_name'],
-        'languages'  => raw_info['user']['languages'].map(&:lang),
-        'home'       => raw_info['user']['home'],
-        'image_url'  => raw_info['user']['img']['href']
+        'languages'  => languages,
+        'lat'        => lat,
+        'lon'        => lon,
+        'image_url'  => image_url
       }
+      end
+
+      def lat
+        raw_info['user']['home']['lat'].to_f rescue nil
+      end
+
+      def lon
+        raw_info['user']['home']['lon'].to_f rescue nil
+      end
+
+      def languages
+        raw_info['user']['languages']['lang'] rescue []
+      end
+
+      def image_url
+        raw_info['user']['img']['href'] rescue nil
       end
 
       extra do
