@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
 
   gem.author      = "Christoph Bünte"
   gem.email       = 'christoph@sozialhelden.de'
-  gem.description = 'Osm strategy for OmniAuth 1.0'
+  gem.description = 'OpenStreetMap strategy for OmniAuth 1.0'
   gem.summary     = gem.description
 
   gem.add_dependency "omniauth-oauth", "~> 1.0"

@@ -22,6 +22,10 @@ Once these are in, you need to add the following to your `config/initializers/om
       provider :osm, "consumer_key", "consumer_secret"
     end
 
+If you are using devise, this is how it looks like in your `config/initializers/devise.rb`:
+
+    config.omniauth :osm, "consumer_key", "consumer_secret"
+
 You will obviously have to put in your key and secret, which you get when you register your app with OpenStreetMap.
 
 Now just follow the README at: https://github.com/intridea/omniauth
