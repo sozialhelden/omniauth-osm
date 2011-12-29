@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.version     = OmniAuth::Osm::VERSION
   gem.homepage    = 'https://github.com/sozialhelden/omniauth-osm'
 
-  gem.author      = "Christoph Bünte"
+  gem.author      = "Christoph B\303\274nte"
   gem.email       = 'christoph@sozialhelden.de'
   gem.description = 'OpenStreetMap strategy for OmniAuth 1.0'
   gem.summary     = gem.description
