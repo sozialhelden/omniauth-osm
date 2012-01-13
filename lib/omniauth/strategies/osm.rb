@@ -8,9 +8,9 @@ module OmniAuth
 
       option :client_options, {
         :site               => 'http://www.openstreetmap.org',
-        :request_token_url => 'http://www.openstreetmap.org/oauth/request_token',
-        :access_token_url  => 'http://www.openstreetmap.org/oauth/access_token',
-        :authorize_url     => 'http://www.openstreetmap.org/oauth/authorize'
+        :request_token_url  => 'http://www.openstreetmap.org/oauth/request_token',
+        :access_token_url   => 'http://www.openstreetmap.org/oauth/access_token',
+        :authorize_url      => 'http://www.openstreetmap.org/oauth/authorize'
       }
 
       uid{ raw_info['user']['id'] }
