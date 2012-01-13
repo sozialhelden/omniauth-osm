@@ -4,3 +4,6 @@ rvm:
   - 1.9.3
   - ruby-head
   - ree
+notifications:
+  email:
+    - info@christophbuente.de
