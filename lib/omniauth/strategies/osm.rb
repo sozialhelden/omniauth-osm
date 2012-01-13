@@ -1,4 +1,5 @@
 require 'omniauth-oauth'
+require 'multi_json'
 
 module OmniAuth
   module Strategies
@@ -45,7 +46,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= Hash.from_xml(access_token.get('/api/0.6/user/details.json').body)['osm']
+        @raw_info ||= MultiJson.decode(access_token.get('/api/0.6/user/details.json').body)['osm']
         rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
