@@ -1,5 +1,11 @@
 # OmniAuth OpenStreetMap
 
+[![alt text][2]][1]
+
+  [1]: http://travis-ci.org/#!/sozialhelden/omniauth-osm
+  [2]: https://secure.travis-ci.org/sozialhelden/omniauth-osm.png
+
+
 This gem contains the OpenStreetMap strategy for OmniAuth.
 
 OpenStreetMap uses the OAuth 1.0a flow, you can read about it here: http://wiki.openstreetmap.org/wiki/OAuth
