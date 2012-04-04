@@ -16,73 +16,83 @@ describe OmniAuth::Strategies::Osm do
     it 'has correct Osm site' do
       subject.options.client_options.site.should eq('http://www.openstreetmap.org')
     end
-
-    it 'has correct authorize url' do
-      subject.options.client_options.authorize_url.should eq('http://www.openstreetmap.org/oauth/authorize')
-    end
-
-    it 'has correct request token url' do
-      subject.options.client_options.request_token_url.should eq('http://www.openstreetmap.org/oauth/request_token')
-    end
-
-    it 'has correct access token url' do
-      subject.options.client_options.access_token_url.should eq('http://www.openstreetmap.org/oauth/access_token')
-    end
   end
 
   describe '#id' do
     it 'returns the id from raw_info' do
-      subject.stub(:raw_info) {{ 'user' => { 'id' => '123' } } }
+      subject.stub(:raw_info) { { 'id' => '123' } }
       subject.uid.should eq('123')
     end
   end
 
+  FULL_XML = <<-EOX
+<?xml version="1.0" encoding="UTF-8"?>
+<osm generator="OpenStreetMap server" version="0.6">
+  <user display_name="freundchen" account_created="2011-01-07T14:35:24Z" id="392638">
+    <img href="http://somewhere.com/image.jpg" />
+    <description>Test description</description>
+    <contributor-terms pd="false" agreed="true"/>
+    <home lon="13.411681556178" zoom="3" lat="52.524360979625"/>
+    <languages>
+      <lang>de-DE</lang>
+      <lang>de</lang>
+    </languages>
+  </user>
+</osm>
+EOX
+
+  MINI_XML = <<-EOX
+<?xml version="1.0" encoding="UTF-8"?>
+<osm generator="OpenStreetMap server" version="0.6">
+  <user display_name="freundchen" account_created="2011-01-07T14:35:24Z" id="392638">
+    <description/>
+    <contributor-terms pd="false" agreed="true"/>
+  </user>
+</osm>
+EOX
+
   describe '#info' do
     before :each do
-      @raw_info ||= { 'user' => { 'display_name' => 'Fred', 'languages' => {'lang' => ["de-DE", "de"]}, 'home' => {'lat' => '52.0', 'lon' => '13.4', 'zoom' => '3' }, 'img' => {'href' => 'http://somewhere.com/image.jpg'} } }
-      subject.stub(:raw_info) { @raw_info }
+      @parsed = subject.send(:parse_info, FULL_XML)
+      @mini_parsed = subject.send(:parse_info, MINI_XML)
     end
 
     context 'when data is present in raw info' do
       it 'returns the name' do
-        subject.info['name'].should eq('Fred')
+        @parsed['display_name'].should eq('freundchen')
       end
 
       it 'returns the languages' do
-        subject.info['languages'].should eq(['de-DE', 'de'])
+        @parsed['languages'].should eq(['de-DE', 'de'])
       end
 
       it 'returns no languages if missing' do
-        @raw_info['user'].delete('languages')
-        subject.info['languages'].should eq([])
+
+        @mini_parsed['languages'].should eq([])
       end
 
       it 'returns the lat' do
-        subject.info['lat'].should eq(52.0)
+        @parsed['lat'].should eq(52.524360979625)
       end
 
       it 'returns no lat if missing' do
-        @raw_info['user'].delete('home')
-        subject.info['lat'].should eq(nil)
+        @mini_parsed['lat'].should eq(nil)
       end
 
       it 'returns the lon' do
-        subject.info['lon'].should eq(13.4)
+        @parsed['lon'].should eq(13.411681556178)
       end
 
       it 'returns no lon if missing' do
-        @raw_info['user'].delete('home')
-        subject.info['lon'].should eq(nil)
+        @mini_parsed['lon'].should eq(nil)
       end
 
       it 'returns the image' do
-        subject.info['image_url'].should eq('http://somewhere.com/image.jpg')
+        @parsed['image_url'].should eq('http://somewhere.com/image.jpg')
       end
 
       it 'returns no image of missing' do
-        @raw_info['user'].delete('img')
-        subject.info['image_url'].should eq(nil)
-
+        @mini_parsed['image_url'].should eq(nil)
       end
     end
   end
