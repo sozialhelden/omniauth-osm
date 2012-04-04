@@ -5,7 +5,7 @@ require "omniauth-osm/version"
 Gem::Specification.new do |gem|
   gem.name        = 'omniauth-osm'
   gem.version     = OmniAuth::Osm::VERSION
-  gem.authors     = ["Christoph B\303\274nte"]
+  gem.authors     = ["Christoph Bünte"]
   gem.email       = 'christoph@sozialhelden.de'
   gem.homepage    = 'https://github.com/sozialhelden/omniauth-osm'
   gem.description = %q{OpenStreetMap strategy for OmniAuth 1.0a}
