@@ -18,7 +18,7 @@ describe OmniAuth::Strategies::Osm do
     end
   end
 
-  describe '#id' do
+  describe '#uid' do
     it 'returns the id from raw_info' do
       subject.stub(:raw_info) { { 'id' => '123' } }
       subject.uid.should eq('123')
@@ -94,6 +94,22 @@ EOX
       it 'returns no image of missing' do
         @mini_parsed['image_url'].should eq(nil)
       end
+    end
+  end
+
+  describe 'failure' do
+
+    it "parsed should be an empty hash" do
+      @parsed = subject.send(:parse_info, 'You dont\'t have sufficient right to do that.')
+      @parsed.should eq({"languages" => []})
+    end
+
+    it "initializes raw_info properly if no xml is returned" do
+      response_body = "foo bar"
+      access_token = mock(:get => mock(:body => response_body))
+      subject.should_receive(:access_token).and_return(access_token)
+
+      subject.raw_info.should eq({"languages" => []})
     end
   end
 end

@@ -46,8 +46,8 @@ module OmniAuth
         image = doc.elements['//img']
         description = doc.elements['//description']
         basic_attributes = { }
-        basic_attributes['id']           = user.attribute('id').value
-        basic_attributes['display_name'] = user.attribute('display_name').value
+        basic_attributes['id']           = user.attribute('id').value if user
+        basic_attributes['display_name'] = user.attribute('display_name').value if user
         basic_attributes['languages']    = languages.map(&:text) if languages
         basic_attributes['image_url']    = image.attribute('href').value if image
         basic_attributes['lat']          = home.attribute('lat').value.to_f if home
