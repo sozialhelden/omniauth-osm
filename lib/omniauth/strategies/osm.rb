@@ -7,6 +7,7 @@ module OmniAuth
       option :name, "osm"
 
       option :client_options, :site => 'http://www.openstreetmap.org'
+      option :fetch_permissions, false
 
       uid { raw_info['id'] }
 
@@ -16,6 +17,8 @@ module OmniAuth
 
       def raw_info
         @raw_info ||= parse_info(access_token.get('/api/0.6/user/details').body)
+        @raw_info['permissions'] ||= parse_permissions(access_token.get('/api/0.6/permissions').body) if options[:fetch_permissions]
+        @raw_info
         rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
@@ -54,6 +57,12 @@ module OmniAuth
         basic_attributes['lon']          = home.attribute('lon').value.to_f if home
         basic_attributes['description']  = description.text if description
         basic_attributes
+      end
+
+      def parse_permissions(xml_data)
+        # extract event information
+        doc = REXML::Document.new(xml_data)
+        doc.get_elements('//permission').map { |p| p.attribute('name').value }
       end
     end
   end
