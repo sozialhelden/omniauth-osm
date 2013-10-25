@@ -30,7 +30,7 @@ Once these are in, you need to add the following to your `config/initializers/om
 
 If you are using devise, this is how it looks like in your `config/initializers/devise.rb`:
 
-    config.omniauth :osm, "consumer_key", "consumer_secret"
+    config.omniauth :osm, "consumer_key", "consumer_secret", :fetch_permissions => true
 
 You will obviously have to put in your key and secret, which you get when you register your app with OpenStreetMap.
 
@@ -38,7 +38,9 @@ Now just follow the README at: https://github.com/intridea/omniauth
 
 ## Other Servers
 
-If you would like to use this plugin against another OSM server, such as the test development server you can use the environment variable OSM_AUTH_SITE to set the server to connect to.
+If you would like to use this plugin against another OSM server, such as the test development server you can use the environment variable OSM_AUTH_SITE to set the server to connect to. Alternatively you can pass the site as a client_option to the omniauth config:
+
+    config.omniauth :osm, "consumer_key", "consumer_secret", :fetch_permissions => true, :client_options => {:site => 'http://api06.dev.openstreetmap.org' }
 
 You could for example use the gem figaro to configure the environment variable, or roll your own preinitialiser similar to the OpenStreetMap website.
 
