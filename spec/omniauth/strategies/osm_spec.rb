@@ -113,7 +113,7 @@ EOX
 
     it "initializes raw_info properly if no xml is returned" do
       response_body = "foo bar"
-      access_token = mock(:get => mock(:body => response_body))
+      access_token = double(:get => double(:body => response_body))
       subject.should_receive(:access_token).and_return(access_token)
 
       subject.raw_info.should eq({"languages" => []})
