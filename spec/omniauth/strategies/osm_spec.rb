@@ -13,8 +13,15 @@ describe OmniAuth::Strategies::Osm do
   end
 
   describe '#client_options' do
-    it 'has correct Osm site' do
-      subject.options.client_options.site.should eq('http://www.openstreetmap.org')
+    it 'has correct default production site' do
+      OmniAuth::Strategies::Osm.site.should eq('http://www.openstreetmap.org')
+    end
+
+    it 'should use the correct environment site override' do
+      stub_const("ENV", {'OSM_AUTH_SITE' => 'http://api06.dev.openstreetmap.org'})
+      # Can't test the subject directly here as the site was set on class load,
+      # but could still override it via an options hash if you wanted to
+      OmniAuth::Strategies::Osm.site.should eq('http://api06.dev.openstreetmap.org')
     end
   end
 
@@ -106,7 +113,7 @@ EOX
 
     it "initializes raw_info properly if no xml is returned" do
       response_body = "foo bar"
-      access_token = mock(:get => mock(:body => response_body))
+      access_token = double(:get => double(:body => response_body))
       subject.should_receive(:access_token).and_return(access_token)
 
       subject.raw_info.should eq({"languages" => []})
