@@ -6,7 +6,15 @@ module OmniAuth
     class Osm < OmniAuth::Strategies::OAuth
       option :name, "osm"
 
-      option :client_options, :site => 'http://www.openstreetmap.org'
+      def self.site
+        if ENV['OSM_AUTH_SITE']
+          ENV['OSM_AUTH_SITE']
+        else
+          "http://www.openstreetmap.org"
+        end
+      end
+
+      option :client_options, :site => site
       option :fetch_permissions, false
 
       uid { raw_info['id'] }

@@ -36,6 +36,12 @@ You will obviously have to put in your key and secret, which you get when you re
 
 Now just follow the README at: https://github.com/intridea/omniauth
 
+## Other Servers
+
+If you would like to use this plugin against another OSM server, such as the test development server you can use the environment variable OSM_AUTH_SITE to set the server to connect to.
+
+You could for example use the gem figaro to configure the environment variable, or roll your own preinitialiser similar to the OpenStreetMap website.
+
 ## Note on Patches/Pull Requests
 
 - Fork the project.
