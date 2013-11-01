@@ -10,6 +10,7 @@ Gem::Specification.new do |gem|
   gem.homepage    = 'https://github.com/sozialhelden/omniauth-osm'
   gem.description = %q{OpenStreetMap strategy for OmniAuth 1.0a}
   gem.summary     = %q{OpenStreetMap strategy for OmniAuth 1.0a}
+  gem.license     = 'MIT'
 
   gem.rubyforge_project = "omniauth-osm"
 
