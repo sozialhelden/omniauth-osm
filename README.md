@@ -5,6 +5,8 @@
 [![Dependency Status](https://gemnasium.com/sozialhelden/omniauth-osm.png)](https://gemnasium.com/sozialhelden/omniauth-osm)
 [![Coverage Status](https://coveralls.io/repos/sozialhelden/omniauth-osm/badge.png)](https://coveralls.io/r/sozialhelden/omniauth-osm)
 [![Code Climate](https://codeclimate.com/github/sozialhelden/omniauth-osm.png)](https://codeclimate.com/github/sozialhelden/omniauth-osm)
+[![Gittip ](http://img.shields.io/gittip/sozialhelden.png) ](https://gittip.com/sozialhelden)
+[![License](http://img.shields.io/license/MIT.png?color=green) ](https://github.com/sozialhelden/omniauth-osm/blob/master/LICENSE.md)
 
 This gem contains the OpenStreetMap strategy for OmniAuth.
 
