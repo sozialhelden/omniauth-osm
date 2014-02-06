@@ -1,10 +1,9 @@
 # OmniAuth OpenStreetMap
 
-[![alt text][2]][1]
-
-  [1]: http://travis-ci.org/#!/sozialhelden/omniauth-osm
-  [2]: https://secure.travis-ci.org/sozialhelden/omniauth-osm.png
-
+[![Gem Version](https://fury-badge.herokuapp.com/rb/omniauth-osm.png)](http://badge.fury.io/rb/omniauth-osm)
+[![Build Status](https://travis-ci.org/sozialhelden/omniauth-osm.png?branch=master)](https://travis-ci.org/sozialhelden/omniauth-osm)
+[![Dependency Status](https://gemnasium.com/sozialhelden/omniauth-osm.png)](https://gemnasium.com/sozialhelden/omniauth-osm)
+[![Code Climate](https://codeclimate.com/github/sozialhelden/omniauth-osm.png)](https://codeclimate.com/github/sozialhelden/omniauth-osm)
 
 This gem contains the OpenStreetMap strategy for OmniAuth.
 
