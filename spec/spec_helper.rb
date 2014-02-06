@@ -4,3 +4,6 @@ require 'simplecov'
 require 'omniauth-osm'
 require 'rspec'
 require 'webmock/rspec'
+
+require 'coveralls'
+Coveralls.wear!
