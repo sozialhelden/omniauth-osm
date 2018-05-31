@@ -14,7 +14,7 @@ describe OmniAuth::Strategies::Osm do
 
   describe '#client_options' do
     it 'has correct default production site' do
-      OmniAuth::Strategies::Osm.site.should eq('http://www.openstreetmap.org')
+      OmniAuth::Strategies::Osm.site.should eq('https://www.openstreetmap.org')
     end
 
     it 'should use the correct environment site override' do

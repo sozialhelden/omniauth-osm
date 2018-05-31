@@ -10,7 +10,7 @@ module OmniAuth
         if ENV['OSM_AUTH_SITE']
           ENV['OSM_AUTH_SITE']
         else
-          "http://www.openstreetmap.org"
+          "https://www.openstreetmap.org"
         end
       end
 
